@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const TodoModal = ({ token, todo, onClose, onUpdate, mode = "create" }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -34,7 +36,7 @@ const TodoModal = ({ token, todo, onClose, onUpdate, mode = "create" }) => {
     try {
       if (mode === "create") {
         await axios.post(
-          'https://task-manager-backend-3cnj.onrender.com/api/todos',
+          `${API_BASE_URL}/api/todos` ,
           formData,
           {
             headers: {
@@ -44,7 +46,7 @@ const TodoModal = ({ token, todo, onClose, onUpdate, mode = "create" }) => {
         );
       } else if (mode === "edit") {
         await axios.put(
-          `https://task-manager-backend-3cnj.onrender.com/api/todos/${todo.id}`,
+          `${API_BASE_URL}/api/todos/${todo.id}`,
            {
             title: formData.title || todo.title,
             description: formData.description || todo.description

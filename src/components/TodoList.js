@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TodoCard from './TodoCard';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const TodoList = ({ token, userId }) => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ const TodoList = ({ token, userId }) => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('https://task-manager-backend-3cnj.onrender.com/api/todos', {
+      const response = await axios.get(`${API_BASE_URL}/api/todos`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -29,7 +31,7 @@ const TodoList = ({ token, userId }) => {
   const updateTodo = async (id, updates) => {
     try {
       const response = await axios.put(
-        `https://task-manager-backend-3cnj.onrender.com/api/todos/${id}`,
+        `${API_BASE_URL}/api/todos/${id}`,
         updates,
         {
           headers: {
@@ -45,7 +47,7 @@ const TodoList = ({ token, userId }) => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`https://task-manager-backend-3cnj.onrender.com/api/todos/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

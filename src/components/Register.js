@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Register = ({ onLogin, toggleForm }) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -31,7 +33,7 @@ const Register = ({ onLogin, toggleForm }) => {
     
     try {
       const { confirmPassword, ...submitData } = formData;
-      const response = await axios.post('https://task-manager-backend-3cnj.onrender.com/api/register', submitData);
+      const response = await axios.post(`${API_BASE_URL}/api/register`, submitData);
       const { token, user } = response.data;
       onLogin(user, token);
     } catch (err) {
