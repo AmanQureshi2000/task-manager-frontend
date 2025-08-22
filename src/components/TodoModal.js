@@ -30,11 +30,11 @@ const TodoModal = ({ token, todo, onClose, onUpdate, mode = "create" }) => {
     setError('');
     setLoading(true);
     token = localStorage.getItem('token');
-    
+
     try {
       if (mode === "create") {
         await axios.post(
-          'http://localhost:5000/api/todos',
+          'https://task-manager-backend-3cnj.onrender.com/api/todos',
           formData,
           {
             headers: {
@@ -44,7 +44,7 @@ const TodoModal = ({ token, todo, onClose, onUpdate, mode = "create" }) => {
         );
       } else if (mode === "edit") {
         await axios.put(
-          `http://localhost:5000/api/todos/${todo.id}`,
+          `https://task-manager-backend-3cnj.onrender.com/api/todos/${todo.id}`,
            {
             title: formData.title || todo.title,
             description: formData.description || todo.description

@@ -31,7 +31,7 @@ const Register = ({ onLogin, toggleForm }) => {
     
     try {
       const { confirmPassword, ...submitData } = formData;
-      const response = await axios.post('http://localhost:5000/api/register', submitData);
+      const response = await axios.post('https://task-manager-backend-3cnj.onrender.com/api/register', submitData);
       const { token, user } = response.data;
       onLogin(user, token);
     } catch (err) {

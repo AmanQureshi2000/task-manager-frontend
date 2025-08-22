@@ -13,7 +13,7 @@ const TodoList = ({ token, userId }) => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/todos', {
+      const response = await axios.get('https://task-manager-backend-3cnj.onrender.com/api/todos', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -29,7 +29,7 @@ const TodoList = ({ token, userId }) => {
   const updateTodo = async (id, updates) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/todos/${id}`,
+        `https://task-manager-backend-3cnj.onrender.com/api/todos/${id}`,
         updates,
         {
           headers: {
@@ -45,7 +45,7 @@ const TodoList = ({ token, userId }) => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+      await axios.delete(`https://task-manager-backend-3cnj.onrender.com/api/todos/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
